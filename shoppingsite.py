@@ -89,6 +89,20 @@ def add_to_cart(melon_id):
     page and display a confirmation message: 'Melon successfully added to
     cart'."""
 
+    if session.has_key("cart"):
+        session["cart"][melon_id] = 0
+        session["cart"][melon_id] += 1
+    else:
+        session["cart"] = {}
+        session["cart"][melon_id] = 0
+        session["cart"][melon_id] += 1
+
+    #session["cart"] = {}
+    #if not session["cart"].get(melon_id):
+       # session["cart"][melon_id] = 0
+    #session["cart"][melon_id] += 1
+
+
     # TODO: Finish shopping cart functionality
 
     # The logic here should be something like:
@@ -100,7 +114,7 @@ def add_to_cart(melon_id):
     # - flash a success message
     # - redirect the user to the cart page
 
-    return "Oops! This needs to be implemented!"
+    return redirect("/cart")
 
 
 @app.route("/login", methods=["GET"])
@@ -117,8 +131,7 @@ def process_login():
     Find the user's login credentials located in the 'request.form'
     dictionary, look up the user, and store them in the session.
     """
-    session["cart"] = {}
-    
+     #session["cart"] = {}
     # TODO: Need to implement this!
 
     # The logic here should be something like:
